@@ -1,12 +1,13 @@
-function Machine(coins) {
-  this.coins = coins
+function coinHolder(coins) {
+  return coins;
 }
+
 
 function vend() {
   return true;
 }
 
 module.exports = {
-    Machine,
+    coinHolder,
     vend
 }

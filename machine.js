@@ -1,7 +1,12 @@
+var heldCoins;
+
 function coinHolder(coins) {
-  return coins;
+  heldCoins = Object.assign({}, coins);
 }
 
+function coinReturn() {
+  return heldCoins;
+}
 
 function vend() {
   return true;
@@ -9,5 +14,6 @@ function vend() {
 
 module.exports = {
     coinHolder,
-    vend
+    vend,
+    coinReturn
 }

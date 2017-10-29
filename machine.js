@@ -1,5 +1,1 @@
-
-
-const vend = () => {}
-
-default export vend
+export default () => {true}

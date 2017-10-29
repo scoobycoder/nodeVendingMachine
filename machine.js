@@ -1,6 +1,13 @@
-let coins = ''
+let coins = []
 
-export const coinReturn = () => coins
-export const insertCoin = (coin) => coins = coin
+const clearCoins = () => coins = []
+
+export const coinReturn = () => {
+    const localCoin = coins
+    clearCoins()
+    return localCoin 
+}
+
+export const insertCoin = (coin) => coins.push(coin)
 
 export default () => true

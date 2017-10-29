@@ -11,7 +11,7 @@ describe('Vending Machine', function(){
 
     it('should return the coin inserted', function(done){
       insertCoin({type: 'quarter'})
-      assert.equal(JSON.stringify(coinReturn()), JSON.stringify({"type":"quarter"}));
+      assert.deepEqual(coinReturn(), {"type":"quarter"});
       done();
     })  
 

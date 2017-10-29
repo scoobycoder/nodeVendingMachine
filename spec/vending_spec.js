@@ -1,6 +1,6 @@
 import chai from 'chai'
-import assert from 'chai'
-import equal from 'chai'
+let expect = chai.expect;
+let assert = chai.assert;
 import machine from "../machine"
 
 describe('Vending Machine', function(){

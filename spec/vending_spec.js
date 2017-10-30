@@ -23,7 +23,13 @@ describe('Vending Machine', function(){
       insertCoin({type: 'dime'})      
       assert.deepEqual(coinReturn(), [{"type":"quarter"}, {"type":"dime"}]);
       done();
-    })  
+    })
+
+    it('should not take pennies', function(done){
+      insertCoin({type: 'penny'})
+      assert.deepEqual(coinReturn(), []);
+      done();
+    })
 
   }
 )

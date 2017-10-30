@@ -8,6 +8,6 @@ export const coinReturn = () => {
     return localCoin 
 }
 
-export const insertCoin = (coin) => coins.push(coin)
+export const insertCoin = (coin) => coin['type'] === 'penny' ? console.log('No Pennies!') : coins.push(coin)
 
 export default () => true

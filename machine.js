@@ -1,10 +1,22 @@
 let coins = []
 let items = []
+const prices = [{"candy": 50}]
 
 export const resetMachine = () => {
     clearCoins()
     items = []
 }
+
+export const pricer = (item) => {
+    if (Object.values(item) == "candy")
+    {
+        return 50
+    }
+    else
+    {
+        return 75
+    }
+} 
 
 const clearCoins = () => coins = []
 export const itemTray = () => items

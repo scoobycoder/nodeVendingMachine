@@ -1,6 +1,9 @@
+import { values, keys } from 'lodash'
+
 let coins = []
 let items = []
-const prices = [{"candy": 50}]
+const prices = [{"candy": 50}, {"chips": 75}]
+const clearCoins = () => coins = []
 
 export const resetMachine = () => {
     clearCoins()
@@ -8,17 +11,10 @@ export const resetMachine = () => {
 }
 
 export const pricer = (item) => {
-    if (Object.values(item) == "candy")
-    {
-        return 50
-    }
-    else
-    {
-        return 75
-    }
-} 
+    const price = prices.filter((priceItem) => keys(priceItem)[0] == values(item)[0])
+    return values(price[0])[0]
+}
 
-const clearCoins = () => coins = []
 export const itemTray = () => items
 
 export const coinReturn = () => {

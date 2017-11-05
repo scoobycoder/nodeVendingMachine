@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "babel machine.js -d dist",
-    "unit-tests": "mocha spec/*_spec.js --compilers js:babel-register",    
+    "unit-tests": "mocha spec/*_spec.js --compilers js:babel-register",
     "test": "npm run unit-tests"
   },
   "repository": {
@@ -19,9 +19,14 @@
     "kata"
   ],
   "babel": {
-    "presets": ["es2015", "stage-2"],
-    "plugins": ["rewire"]
-  },  
+    "presets": [
+      "es2015",
+      "stage-2"
+    ],
+    "plugins": [
+      "rewire"
+    ]
+  },
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -30,7 +35,6 @@
   "homepage": "https://github.com/scoobycoder/nodeVendingMachine#readme",
   "devDependencies": {
     "chai": "^3.5.0",
-    "mocha": "^3.1.0",
     "babel-cli": "6.11.4",
     "babel-core": "6.14.0",
     "babel-plugin-rewire": "1.0.0",
@@ -38,6 +42,8 @@
     "babel-preset-stage-2": "6.11.0",
     "babel-register": "6.14.0",
     "babel-template": "6.15.0",
-    "babel-types": "6.15.0"
+    "babel-types": "6.15.0",
+    "lodash": "4.17.4",
+    "mocha": "^3.1.0"
   }
 }

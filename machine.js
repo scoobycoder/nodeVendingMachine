@@ -26,7 +26,14 @@ export const coinReturn = () => {
 }
 
 const checkMoney = () => coins.reduce((total, value) => total + values(value)[COIN_VALUE_LOC], 0)
+const purchaseCandy = () => {
+    items.push({"type": "candy"})
+    coins.pop()
+    coins.pop()
+}
 
 export const insertCoin = (coin) => coin['type'] === 'penny' ? console.log('No Pennies!') : coins.push(coin)
 export const chips = () =>  priceItem({"type": "candy"}) <= checkMoney() ? items.push({"type": "chips"}) : console.log("MO Money!")
-export const candy = () =>  priceItem({"type": "candy"}) <= checkMoney() ? items.push({"type": "candy"}) : console.log("MO Money!")
+export const candy = () =>  {
+    return priceItem({"type": "candy"}) <= checkMoney() ?  purchaseCandy() : console.log("MO Money!")
+}

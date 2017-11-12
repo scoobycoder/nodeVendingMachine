@@ -30,5 +30,3 @@ const checkMoney = () => coins.reduce((total, value) => total + values(value)[CO
 export const insertCoin = (coin) => coin['type'] === 'penny' ? console.log('No Pennies!') : coins.push(coin)
 export const chips = () =>  priceItem({"type": "candy"}) <= checkMoney() ? items.push({"type": "chips"}) : console.log("MO Money!")
 export const candy = () =>  priceItem({"type": "candy"}) <= checkMoney() ? items.push({"type": "candy"}) : console.log("MO Money!")
-
-export default () => true

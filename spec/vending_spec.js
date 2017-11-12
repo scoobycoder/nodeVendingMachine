@@ -1,7 +1,7 @@
 import chai from 'chai'
 let expect = chai.expect;
 let assert = chai.assert;
-import machine, { coinReturn, insertCoin, chips, candy, itemTray, resetMachine} from "../machine"
+import { coinReturn, insertCoin, chips, candy, itemTray, resetMachine} from "../machine"
 
 describe('Vending Machine', function(){
 
@@ -11,11 +11,6 @@ describe('Vending Machine', function(){
     const createDime = () => ({type: 'dime', value: 10})
     const createPenny = () => ({type: 'penny', value: 1})
     const insertTwoQuarters = (number) => { insertCoin(createQuarter()); insertCoin(createQuarter()) }
-      
-    it('should vend', function(done){
-          assert.equal(machine(), true);
-          done()
-    })
 
     it('should return the coin inserted', function(done){
       insertCoin(createQuarter())

@@ -1,7 +1,7 @@
 import chai from 'chai'
 let expect = chai.expect;
 let assert = chai.assert;
-import machine, { coinReturn, insertCoin, chips, candy, itemTray, resetMachine, priceItem } from "../machine"
+import machine, { coinReturn, insertCoin, chips, candy, itemTray, resetMachine} from "../machine"
 
 describe('Vending Machine', function(){
 
@@ -59,16 +59,6 @@ describe('Vending Machine', function(){
       candy()
       chips()
       assert.deepEqual(itemTray(), [{"type":"candy"}, {"type":"chips"}])
-      done()
-    })
-
-    it('should know candy is 50 cents', function(done){
-      assert.equal(priceItem({"type":"candy"}), 50)
-      done()
-    })
-
-    it('should know chips are 75 cents', function(done){
-      assert.equal(priceItem({"type":"chips"}), 75)
       done()
     })
 

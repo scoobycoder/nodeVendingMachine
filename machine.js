@@ -12,7 +12,7 @@ export const resetMachine = () => {
     items = []
 }
 
-export const priceItem = (item) => {
+const priceItem = (item) => {
     const price = prices.filter((priceItem) => keys(priceItem)[0] == values(item)[0])
     return values(price[PRICE_VALUE_LOC])[PRICE_VALUE_LOC]
 }

@@ -12,26 +12,26 @@ describe('Vending Machine', function(){
     const createPenny = () => ({type: 'penny', value: 1})
     const insertTwoQuarters = (number) => { insertCoin(createQuarter()); insertCoin(createQuarter()) }
 
-    xit('should return the coin inserted', function(done){
+    it('should return the coin inserted', function(done){
       insertCoin(createQuarter())
       assert.deepEqual(coinReturn(), [{"type":"quarter", "value":25}]);
       done()
     })  
 
-    xit('should return all the coins inserted', function(done){
+    it('should return all the coins inserted', function(done){
       insertCoin(createQuarter())
       insertCoin(createDime())      
       assert.deepEqual(coinReturn(), [{"type":"quarter","value":25}, {"type":"dime","value":10}]);
       done();
     })
 
-    xit('should not take pennies', function(done){
+    it('should not take pennies', function(done){
       insertCoin(createPenny())
       assert.deepEqual(coinReturn(), []);
       done()
     })
 
-    xit('should vend chips', function(done) {
+    it('should vend chips', function(done) {
       insertTwoQuarters()
       insertCoin(createQuarter())
       chips()
@@ -39,7 +39,7 @@ describe('Vending Machine', function(){
       done()
     })
 
-    xit('should vend candy', function(done){
+    it('should vend candy', function(done){
       insertCoin(createQuarter())
       insertCoin(createQuarter())
       candy()
@@ -47,7 +47,7 @@ describe('Vending Machine', function(){
       done()
     })
 
-    xit('should vend two items', function(done){
+    it('should vend two items', function(done){
       insertTwoQuarters()
       insertTwoQuarters()
       insertCoin(createQuarter())
@@ -57,14 +57,14 @@ describe('Vending Machine', function(){
       done()
     })
 
-    xit('should not vend candy if insufficent money is entered', function(done){
+    it('should not vend candy if insufficent money is entered', function(done){
       insertCoin(createQuarter())
       candy()
       assert.deepEqual(itemTray(), [])
       done()
     })
 
-    xit('should vend candy if sufficent money is entered', function(done){
+    it('should vend candy if sufficent money is entered', function(done){
       insertTwoQuarters()
       candy()
       assert.deepEqual(itemTray(), [{"type":"candy"}])

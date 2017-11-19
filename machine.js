@@ -25,11 +25,25 @@ export const coinReturn = () => {
     return localCoin 
 }
 
+const deductMoney = () => {
+    const indexOfCoin = values(coins[0])[0]
+    console.log(`coins: ${coins}`)
+    console.log(`indexOfCoin: ${indexOfCoin}`)
+    const index = coins.findIndex(i => i.type === "quarter")
+    // const index = coins.indexOf(indexOfCoin)
+    console.log(`index: ${index}`)
+    if (index > -1) {
+        coins.splice(index, 1);
+    }
+}
+
 const checkMoney = () => coins.reduce((total, value) => total + values(value)[COIN_VALUE_LOC], 0)
+
 const purchaseCandy = () => {
+    checkMoney()
+    deductMoney()
+    deductMoney()
     items.push({"type": "candy"})
-    coins.pop()
-    coins.pop()
 }
 
 export const insertCoin = (coin) => coin['type'] === 'penny' ? console.log('No Pennies!') : coins.push(coin)

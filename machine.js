@@ -3,6 +3,7 @@ import { values, keys } from 'lodash'
 let coins = []
 let items = []
 const prices = [{"candy": 50}, {"chips": 75}]
+const coinTypes = [{"25": "quarter"}, {"10": "dime"}]
 const clearCoins = () => coins = []
 const COIN_VALUE_LOC = 1
 const PRICE_VALUE_LOC = 0
@@ -25,7 +26,15 @@ export const coinReturn = () => {
     return localCoin 
 }
 
-const makeChange = (someItem) => checkMoney() - priceItem(someItem)
+const makeChange = (someItem) => { 
+    const remainingAmount = checkMoney() - priceItem(someItem)
+    console.log(`remainingAmount: ${remainingAmount}`)
+    const dime = "10"
+    const coinIndex = coinTypes.findIndex(i => i.dime === "10")
+    console.log(`coinIndex: ${coinIndex}`)
+    coins.slice(coinIndex)
+    return remainingAmount
+}
 const checkMoney = () => coins.reduce((total, value) => total + values(value)[COIN_VALUE_LOC], 0)
 
 const purchaseCandy = () => {

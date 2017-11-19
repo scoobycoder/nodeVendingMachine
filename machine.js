@@ -14,9 +14,7 @@ export const resetMachine = () => {
 
 const priceItem = (item) => {
     const price = prices.filter((priceItem) => keys(priceItem)[0] == values(item)[0])
-    const itemPrice = values(price[PRICE_VALUE_LOC])[PRICE_VALUE_LOC]
-    console.log(`itemPrice: ${itemPrice}`)
-    return itemPrice
+    return values(price[PRICE_VALUE_LOC])[PRICE_VALUE_LOC]
 }
 
 export const itemTray = () => items
@@ -27,14 +25,7 @@ export const coinReturn = () => {
     return localCoin 
 }
 
-export const makeChange = (someItem) => {
-    const amountInserted = checkMoney()
-    console.log(`amountInserted: ${amountInserted}`)
-    const change = amountInserted - priceItem(someItem)
-    console.log(`change: ${change}`)
-    return change
-}
-
+const makeChange = (someItem) => checkMoney() - priceItem(someItem)
 const checkMoney = () => coins.reduce((total, value) => total + values(value)[COIN_VALUE_LOC], 0)
 
 const purchaseCandy = () => {
@@ -45,6 +36,4 @@ const purchaseCandy = () => {
 
 export const insertCoin = (coin) => coin['type'] === 'penny' ? console.log('No Pennies!') : coins.push(coin)
 export const chips = () =>  priceItem({"type": "candy"}) <= checkMoney() ? items.push({"type": "chips"}) : console.log("MO Money!")
-export const candy = () =>  {
-    return priceItem({"type": "candy"}) <= checkMoney() ?  purchaseCandy() : console.log("MO Money!")
-}
+export const candy = () =>  priceItem({"type": "candy"}) <= checkMoney() ?  purchaseCandy() : console.log("MO Money!")

@@ -71,11 +71,11 @@ describe('Vending Machine', function(){
       done()
     })
 
-    xit('should return 25 cents when 75 is entered and candy is purchase', function(done){
+    it('should return 25 cents when 75 is entered and candy is purchase', function(done){
       insertCoin(createQuarter())      
       insertTwoQuarters()
       candy()
-      assert.deepEqual(coinReturn(), [{"type":"quarter","value":25}]);
+      assert.deepEqual(candy(), 25);
       done()
     })
 

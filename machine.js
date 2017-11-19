@@ -14,7 +14,9 @@ export const resetMachine = () => {
 
 const priceItem = (item) => {
     const price = prices.filter((priceItem) => keys(priceItem)[0] == values(item)[0])
-    return values(price[PRICE_VALUE_LOC])[PRICE_VALUE_LOC]
+    const itemPrice = values(price[PRICE_VALUE_LOC])[PRICE_VALUE_LOC]
+    console.log(`itemPrice: ${itemPrice}`)
+    return itemPrice
 }
 
 export const itemTray = () => items
@@ -25,25 +27,20 @@ export const coinReturn = () => {
     return localCoin 
 }
 
-const deductMoney = () => {
-    const indexOfCoin = values(coins[0])[0]
-    console.log(`coins: ${coins}`)
-    console.log(`indexOfCoin: ${indexOfCoin}`)
-    const index = coins.findIndex(i => i.type === "quarter")
-    // const index = coins.indexOf(indexOfCoin)
-    console.log(`index: ${index}`)
-    if (index > -1) {
-        coins.splice(index, 1);
-    }
+export const makeChange = (someItem) => {
+    const amountInserted = checkMoney()
+    console.log(`amountInserted: ${amountInserted}`)
+    const change = amountInserted - priceItem(someItem)
+    console.log(`change: ${change}`)
+    return change
 }
 
 const checkMoney = () => coins.reduce((total, value) => total + values(value)[COIN_VALUE_LOC], 0)
 
 const purchaseCandy = () => {
     checkMoney()
-    deductMoney()
-    deductMoney()
     items.push({"type": "candy"})
+    return makeChange({"type": "candy"})
 }
 
 export const insertCoin = (coin) => coin['type'] === 'penny' ? console.log('No Pennies!') : coins.push(coin)

@@ -79,11 +79,10 @@ describe('Vending Machine', function(){
       done()
     })
 
-    it('should return 15 cents when 65 is entered and candy is purchase', function(done){
+    it('should return 10 cents when 60 is entered and candy is purchase', function(done){
       insertTwoQuarters()
       insertCoin(createDime())      
-      candy()
-      assert.deepEqual(coinReturn(), [{"type":"dime","value":10}]);
+      assert.equal(candy(), 10);
       done()
     })    
 

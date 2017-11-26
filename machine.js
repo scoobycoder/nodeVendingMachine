@@ -29,7 +29,7 @@ export const coinReturn = () => {
 
 const updateCoins = (remainingAmount) => {
     const coinToInsert = coinTypes.filter((coin) => JSON.stringify(values(coin)[COIN_VALUE_LOC]) == remainingAmount)
-    coins.push(coinToInsert[ARRAY_VALUE])
+    coinToInsert[ARRAY_VALUE] != null ? coins.push(coinToInsert[ARRAY_VALUE]) : console.log('No Change') 
 }
 
 const makeChange = (someItem) => { 
@@ -38,6 +38,7 @@ const makeChange = (someItem) => {
     updateCoins(remainingAmount)
     return remainingAmount
 }
+
 const checkMoney = () => coins.reduce((total, value) => total + values(value)[COIN_VALUE_LOC], 0)
 
 const purchaseCandy = () => {

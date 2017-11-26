@@ -47,6 +47,12 @@ const purchaseCandy = () => {
     return makeChange({"type": "candy"})
 }
 
+const purchaseChips = () => {
+    checkMoney()
+    items.push({"type": "chips"})
+    return makeChange({"type": "chips"})
+}
+
 export const insertCoin = (coin) => coin['type'] === 'penny' ? console.log('No Pennies!') : coins.push(coin)
-export const chips = () =>  priceItem({"type": "candy"}) <= checkMoney() ? items.push({"type": "chips"}) : console.log("MO Money!")
+export const chips = () =>  priceItem({"type": "chips"}) <= checkMoney() ? purchaseChips() : console.log("MO Money!")
 export const candy = () =>  priceItem({"type": "candy"}) <= checkMoney() ?  purchaseCandy() : console.log("MO Money!")

@@ -94,6 +94,14 @@ describe('Vending Machine', function(){
       done()
     })
 
+    it('should make change for chips as well', function(done){
+      insertTwoQuarters()
+      insertTwoQuarters()
+      chips()
+      assert.deepEqual(coinReturn(), [{"type":"quarter", "value":25}]);
+      done()
+    })
+
     it('should reduce amount of money available for purchase after each purchage', function(done){
       insertTwoQuarters()
       insertCoin(createDime())   

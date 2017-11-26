@@ -27,13 +27,15 @@ export const coinReturn = () => {
     return localCoin 
 }
 
-const findCoin = (coinToFind) => coin === coinToFind
+const updateCoins = (remainingAmount) => {
+    const coinToInsert = coinTypes.filter((coin) => JSON.stringify(values(coin)[COIN_VALUE_LOC]) == remainingAmount)
+    coins.push(coinToInsert[ARRAY_VALUE])
+}
 
 const makeChange = (someItem) => { 
     const remainingAmount = checkMoney() - priceItem(someItem)
     clearCoins()
-    const coinToInsert = coinTypes.filter((coin) => JSON.stringify(values(coin)[COIN_VALUE_LOC]) == remainingAmount)
-    coins.push(coinToInsert[ARRAY_VALUE])
+    updateCoins(remainingAmount)
     return remainingAmount
 }
 const checkMoney = () => coins.reduce((total, value) => total + values(value)[COIN_VALUE_LOC], 0)

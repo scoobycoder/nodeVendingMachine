@@ -2,6 +2,7 @@ import { values, keys } from 'lodash'
 
 let coins = []
 let items = []
+let inventory = []
 const prices = [{"candy": 50}, {"chips": 75}]
 const coinTypes = [{type: 'quarter', value: 25}, {type: 'dime', 'value': 10}]
 const clearCoins = () => coins = []
@@ -10,6 +11,7 @@ const PRICE_VALUE_LOC = 0
 const ARRAY_VALUE = 0
 
 export const resetMachine = () => {
+    inventory = [{"candy": 2}, {"chips": 2}]
     clearCoins()
     items = []
 }

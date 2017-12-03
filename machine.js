@@ -21,7 +21,7 @@ const priceItem = (item) => {
     return values(price[PRICE_VALUE_LOC])[PRICE_VALUE_LOC]
 }
 
-const checkInventory = (item) => inventory.filter((x) => keys(x)[ARRAY_VALUE] == item)[ARRAY_VALUE][item] > 0
+const checkInventory = (item) => inventory.filter((x) => keys(x)[ARRAY_VALUE] == item)[ARRAY_VALUE][item]
     
 export const itemTray = () => items
 
@@ -43,14 +43,22 @@ const makeChange = (someItem) => {
     return remainingAmount
 }
 
+const removeInventory = (item) => {
+    let loc_items = items
+    const remainingItems = checkInventory("candy") - 1
+    loc_items = [{"candy": remainingItems}, {"chips": 2}]
+    inventory = loc_items
+} 
+
 const checkMoney = () => coins.reduce((total, value) => total + values(value)[COIN_VALUE_LOC], 0)
 
 const purchaseItem = (item) => {
     checkMoney()
     items.push(item)
+    removeInventory(item)
     return makeChange(item)
 }
 
 export const insertCoin = (coin) => coin['type'] === 'penny' ? console.log('No Pennies!') : coins.push(coin)
 export const chips = () =>  priceItem({"type": "chips"}) <= checkMoney() ? purchaseItem({"type": "chips"}) : console.log("MO Money!")
-export const candy = () =>  (priceItem({"type": "candy"}) <= checkMoney() && checkInventory("candy")) ?  purchaseItem({"type": "candy"}) : console.log("MO Money!")
+export const candy = () =>  (priceItem({"type": "candy"}) <= checkMoney() && checkInventory("candy") > 0) ?  purchaseItem({"type": "candy"}) : console.log("Invalid Purchase")

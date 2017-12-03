@@ -17,10 +17,12 @@ export const resetMachine = () => {
 }
 
 const priceItem = (item) => {
-    const price = prices.filter((priceItem) => keys(priceItem)[0] == values(item)[0])
+    const price = prices.filter((x) => keys(x)[0] == values(item)[0])
     return values(price[PRICE_VALUE_LOC])[PRICE_VALUE_LOC]
 }
 
+const checkInventory = (item) => inventory.filter((x) => keys(x)[ARRAY_VALUE] == item)[ARRAY_VALUE][item] > 0
+    
 export const itemTray = () => items
 
 export const coinReturn = () => {
@@ -51,4 +53,4 @@ const purchaseItem = (item) => {
 
 export const insertCoin = (coin) => coin['type'] === 'penny' ? console.log('No Pennies!') : coins.push(coin)
 export const chips = () =>  priceItem({"type": "chips"}) <= checkMoney() ? purchaseItem({"type": "chips"}) : console.log("MO Money!")
-export const candy = () =>  priceItem({"type": "candy"}) <= checkMoney() ?  purchaseItem({"type": "candy"}) : console.log("MO Money!")
+export const candy = () =>  (priceItem({"type": "candy"}) <= checkMoney() && checkInventory("candy")) ?  purchaseItem({"type": "candy"}) : console.log("MO Money!")

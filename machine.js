@@ -1,4 +1,4 @@
-import { values, keys, find, merge } from 'lodash'
+import { values, keys, find, merge, chain } from 'lodash'
 
 let coins = []
 let items = []
@@ -21,7 +21,10 @@ const priceItem = (item) => {
     return values(price[PRICE_VALUE_LOC])[PRICE_VALUE_LOC]
 }
 
-const checkInventory = (item) => inventory.filter((x) => keys(x)[ARRAY_VALUE] == item)[ARRAY_VALUE][item]
+const checkInventory = (item) => {
+    const locInventory = find(inventory, (o) => o[item] >= 1)
+    return locInventory !== undefined ? locInventory[item] : 0
+}
     
 export const itemTray = () => items
 
@@ -44,16 +47,15 @@ const makeChange = (someItem) => {
 }
 
 const removeInventory = (item) => {
+    const itemType = values(item)
     let loc_items = []
-    const remainingItems = checkInventory("candy") - 1
-    let candyRemaining = find(inventory, function(o) { return o.candy > 1; });
+    const remainingItems = checkInventory(itemType) - 1
+    let candyRemaining = find(inventory, (o) => o.candy > 1)
+    let chipsRemaining = find(inventory, (o) => o.chips > 1)
     candyRemaining = merge(candyRemaining, {"candy": remainingItems})
-    const chipsRemaining = find(inventory, function(o) { return o.chips > 1; });
-    console.log(`candyRemaining: ${JSON.stringify(candyRemaining)}`)
-    console.log(`chipsRemaining: ${JSON.stringify(chipsRemaining)}`)
+    chipsRemaining = merge(candyRemaining, {"chips": remainingItems})
     loc_items.push(candyRemaining)
     loc_items.push(chipsRemaining)
-    // loc_items = [{"candy": remainingItems}, {"chips": 2}]
     inventory = loc_items
 } 
 
@@ -67,5 +69,5 @@ const purchaseItem = (item) => {
 }
 
 export const insertCoin = (coin) => coin['type'] === 'penny' ? console.log('No Pennies!') : coins.push(coin)
-export const chips = () =>  priceItem({"type": "chips"}) <= checkMoney() ? purchaseItem({"type": "chips"}) : console.log("MO Money!")
+export const chips = () =>  (priceItem({"type": "chips"}) <= checkMoney() && checkInventory("chips") > 0) ?  purchaseItem({"type": "chips"}) : console.log("Invalid Purchase")
 export const candy = () =>  (priceItem({"type": "candy"}) <= checkMoney() && checkInventory("candy") > 0) ?  purchaseItem({"type": "candy"}) : console.log("Invalid Purchase")

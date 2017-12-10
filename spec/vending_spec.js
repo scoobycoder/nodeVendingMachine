@@ -111,7 +111,7 @@ describe('Vending Machine', function(){
       done()
     })
 
-    it('should not vend an item if it is out of stock', function(done){
+    it('should not vend an candy if they are out of stock', function(done){
       insertTwoQuarters()
       candy()
       insertTwoQuarters()
@@ -121,6 +121,19 @@ describe('Vending Machine', function(){
       assert.deepEqual(itemTray(), [{"type":"candy"},{"type":"candy"}])
       done()
     })    
-    
+
+    it('should not vend chips if they are out of stock', function(done){
+      insertTwoQuarters()
+      insertCoin(createQuarter())
+      chips()
+      insertTwoQuarters()
+      insertCoin(createQuarter())
+      chips()
+      insertTwoQuarters()
+      insertCoin(createQuarter())
+      chips()            
+      assert.deepEqual(itemTray(), [{"type":"chips"},{"type":"chips"}])
+      done()
+    })      
   }
 )

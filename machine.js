@@ -21,8 +21,10 @@ const priceItem = (item) => {
     return values(price[PRICE_VALUE_LOC])[PRICE_VALUE_LOC]
 }
 
+const findItem = (item) => find(inventory, (o) => o[item] >= 1)
+
 const checkInventory = (item) => {
-    const locInventory = find(inventory, (o) => o[item] >= 1)
+    const locInventory = findItem(item)
     return locInventory !== undefined ? locInventory[item] : 0
 }
     
@@ -46,14 +48,14 @@ const makeChange = (someItem) => {
     return remainingAmount
 }
 
+const inventoryRemaining = (inventory, item) => find(inventory, (o) => o[item] > 1)
+
 const removeInventory = (item) => {
     const itemType = values(item)
     let loc_items = []
     const remainingItems = checkInventory(itemType) - 1
-    let candyRemaining = find(inventory, (o) => o.candy > 1)
-    let chipsRemaining = find(inventory, (o) => o.chips > 1)
-    candyRemaining = merge(candyRemaining, {"candy": remainingItems})
-    chipsRemaining = merge(candyRemaining, {"chips": remainingItems})
+    const candyRemaining = merge(inventoryRemaining(inventory, item), {"candy": remainingItems})
+    const chipsRemaining = merge(inventoryRemaining(inventory, item), {"chips": remainingItems})
     loc_items.push(candyRemaining)
     loc_items.push(chipsRemaining)
     inventory = loc_items

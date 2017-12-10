@@ -1,4 +1,4 @@
-import { values, keys } from 'lodash'
+import { values, keys, find, merge } from 'lodash'
 
 let coins = []
 let items = []
@@ -44,9 +44,16 @@ const makeChange = (someItem) => {
 }
 
 const removeInventory = (item) => {
-    let loc_items = items
+    let loc_items = []
     const remainingItems = checkInventory("candy") - 1
-    loc_items = [{"candy": remainingItems}, {"chips": 2}]
+    let candyRemaining = find(inventory, function(o) { return o.candy > 1; });
+    candyRemaining = merge(candyRemaining, {"candy": remainingItems})
+    const chipsRemaining = find(inventory, function(o) { return o.chips > 1; });
+    console.log(`candyRemaining: ${JSON.stringify(candyRemaining)}`)
+    console.log(`chipsRemaining: ${JSON.stringify(chipsRemaining)}`)
+    loc_items.push(candyRemaining)
+    loc_items.push(chipsRemaining)
+    // loc_items = [{"candy": remainingItems}, {"chips": 2}]
     inventory = loc_items
 } 
 

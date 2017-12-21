@@ -36,6 +36,8 @@ export const coinReturn = () => {
     return localCoin 
 }
 
+export const retreiveCoinStatus = () => coins
+
 const updateCoins = (remainingAmount) => {
     const coinToInsert = coinTypes.filter((coin) => JSON.stringify(values(coin)[COIN_VALUE_LOC]) == remainingAmount)
     coinToInsert[ARRAY_VALUE] != null ? coins.push(coinToInsert[ARRAY_VALUE]) : console.log('No Change') 

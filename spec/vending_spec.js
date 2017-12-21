@@ -143,11 +143,10 @@ describe('Vending Machine', function(){
       done()
     })
 
-    xit('should require exact change if no change is available in the machine', function(done){
+    it('should require exact change if no change is available in the machine', function(done){
       insertCoin(createDollar())
       chips()            
-      // assert.deepEqual(itemTray(), [{"type":"chips"}])
-      assert.deepEqual(coinReturn(), [{"type":"dollar", "value":100}]);      
+      assert.deepEqual(itemTray(), [])
       done()
     })    
 

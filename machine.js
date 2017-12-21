@@ -1,6 +1,7 @@
 import { values, keys, find, merge, chain } from 'lodash'
 
 let coins = []
+let insertedCoins = []
 let items = []
 let inventory = []
 const prices = [{"candy": 50}, {"chips": 75}]
@@ -65,8 +66,16 @@ const removeInventory = (item) => {
 
 const checkMoney = () => coins.reduce((total, value) => total + values(value)[COIN_VALUE_LOC], 0)
 
+const checkChange = () => {
+    const amountInMachine = checkMoney()
+    const amountInserted = insertedCoins.reduce((total, value) => total + values(value)[COIN_VALUE_LOC], 0)
+    return // Return diff between amount inserted amount in machine and amount of item cost
+}
+
+
 const purchaseItem = (item) => {
     checkMoney()
+    checkChange()
     items.push(item)
     removeInventory(item)
     return makeChange(item)
